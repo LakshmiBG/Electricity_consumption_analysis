@@ -99,9 +99,11 @@ else:
     st.write(f'Average paid price:', average_paid_price, 'cents/kWh')
     st.write(f'Date with highest price:', highest_price_date)
     st.write(f'Date with lowest price:', lowest_price_date)
+    st.write(f'')
 
-
+    
+    st.write(f'Monthly Distribution of Energy Cost)
     monthly_cost = df_filtered.groupby(df_filtered['time'].dt.month)['bill_euro'].sum().round(2)
-    st.bar_chart(monthly_cost, y_label = 'Electricity bill (Euro)', x_label = 'Months')
+    st.bar_chart(monthly_cost, y_label = 'Electricity bill (Euro)', x_label = 'Months (numbered)')
 
 
