@@ -79,9 +79,9 @@ else:
 
 
 # Show statistics for the selected period
-total_consumption = filtered_df['energy_kwh'].sum()
-total_bill = filtered_df['bill_euro'].sum()
-average_price = filtered_df['price_kwh_cent'].mean()
+total_consumption = df_filtered['energy_kwh'].sum()
+total_bill = df_filtered['bill_euro'].sum()
+average_price = df_filtered['price_kwh_cent'].mean()
 average_paid_price = total_bill / total_consumption if total_consumption else 0
 
 st.write(f'Showing range:', start_date, end_date)
