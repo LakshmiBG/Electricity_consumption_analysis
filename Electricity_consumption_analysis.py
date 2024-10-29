@@ -99,4 +99,4 @@ average_paid_price = (total_bill / total_consumption)*100.round(2) if total_cons
 st.write(f'Total consumption over the period', total_consumption, 'kWh')
 st.write(f'Total bill over the period:', total_bill, '€')
 st.write(f'Average price:', average_price, 'cents/kWh')
-st.write(f'Average paid price:', average_paid_price, 'Euros/kWh')
+st.write(f'Average paid price:', {average_paid_price:.2f}, 'Euros/kWh')
