@@ -37,7 +37,7 @@ d2 = pd.to_datetime(d2)
 
 #Validating the data range
 if d1 < min_date or d2 > max_date:
-    st.error(f'Please select dates withing the available range:', min_date, '-', max_date)
+    st.error(f'Please select dates withing the available range: {min_date} - {max_date}')
 elif d1 > d2:
     st.error('Error: Start date must not be later than end date. Please select again.')
 else:
