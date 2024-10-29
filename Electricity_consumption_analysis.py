@@ -66,6 +66,7 @@ if start_date > end_date:
 else:
     # Proceed with the rest of your logic only if the dates are valid
     st.write(f'Showing range:', start_date, end_date)
+    st.write(f'Consumption statistics can be found at the end of the page')
 
     #Grouping interval
     option = st.selectbox("Select an option:", ["Daily", "Weekly", "Monthly"])
@@ -120,6 +121,6 @@ else:
 
 
     monthly_cost = df_filtered.groupby(df_filtered['time'].dt.month)['bill_euro'].sum().round(2)
-    st.bar_chart(monthly_cost)
+    st.bar_chart(monthly_cost, , y_label = 'Electricity bill (Euro)', x_label = 'Months')
 
 
