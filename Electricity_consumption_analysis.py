@@ -26,8 +26,8 @@ min_date = df['time'].min().date()
 max_date = df['time'].max().date()
 
 # Start and end date input
-d1 = st.date_input("Start time", value=min_date)
-d2 = st.date_input("End time", value=max_date)
+d1 = st.date_input("Start time", datetime.date(df['time'][0].year, df['time'][0].month, df['time'][0].day))
+d2 = st.date_input("End time", datetime.date(df['time'][len(df)-1].year, df['time'][len(df)-1].month, df['time'][len(df)-1].day))
 st.write("Showing range:", d1, " - ", d2)
 
 # Convert to datetime for filtering
