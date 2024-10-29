@@ -70,16 +70,6 @@ else:
     else:
         df_filtered = df_monthly_avg
 
-    # Plot charts
-    st.title('Energy consumption')
-    st.line_chart(data=df_filtered, x='time', y='energy_kwh', y_label='Energy consumption (kWh)', x_label='Time')
-    st.title('Electricity price (cents)')
-    st.line_chart(data=df_filtered, x='time', y='price_kwh_cent', y_label='Electricity price (cents)', x_label='Time')
-    st.title('Electricity bill (Euro)')
-    st.line_chart(data=df_filtered, x='time', y='bill_euro', y_label='Electricity bill (Euros)', x_label='Time')
-    st.title('Temperature')
-    st.line_chart(data=df_filtered, x='time', y='Temperature', y_label='Temperature (°C)', x_label='Time')
-
     # Display summary statistics for the selected period
     total_consumption = round(df_filtered['energy_kwh'].sum(), 2)
     total_bill = round(df_filtered['bill_euro'].sum(), 2)
@@ -109,6 +99,16 @@ else:
     st.write(f'Peak consumption day:', peak_consumption_day)
     st.write(f'Lowest consumption day:', low_consumption_day)
     st.write(f'')
+
+    # Plot charts
+    st.title('Energy consumption')
+    st.line_chart(data=df_filtered, x='time', y='energy_kwh', y_label='Energy consumption (kWh)', x_label='Time')
+    st.title('Electricity price (cents)')
+    st.line_chart(data=df_filtered, x='time', y='price_kwh_cent', y_label='Electricity price (cents)', x_label='Time')
+    st.title('Electricity bill (Euro)')
+    st.line_chart(data=df_filtered, x='time', y='bill_euro', y_label='Electricity bill (Euros)', x_label='Time')
+    st.title('Temperature')
+    st.line_chart(data=df_filtered, x='time', y='Temperature', y_label='Temperature (°C)', x_label='Time')
 
     st.title('Monthly Distribution of Energy Cost')
     monthly_cost = df_filtered.groupby(df_filtered['time'].dt.month)['bill_euro'].sum().round(2)
