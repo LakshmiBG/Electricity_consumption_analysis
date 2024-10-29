@@ -102,7 +102,7 @@ else:
     st.write(f'')
 
     
-    st.write(f'Monthly Distribution of Energy Cost)
+    st.write(f'Monthly Distribution of Energy Cost')
     monthly_cost = df_filtered.groupby(df_filtered['time'].dt.month)['bill_euro'].sum().round(2)
     st.bar_chart(monthly_cost, y_label = 'Electricity bill (Euro)', x_label = 'Months (numbered)')
 
