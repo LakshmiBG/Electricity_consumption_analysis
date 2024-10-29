@@ -32,8 +32,8 @@ df['bill_euro'] = df['energy_kwh']*df['price_kwh_cent']/100
 min_date = df['time'].min().date()
 max_date = df['time'].max().date()
 
-d1 = st.date_input("Start time", datetime.date(df['DateTime'][0].year, df['DateTime'][0].month, df['DateTime'][0].day))
-d2 = st.date_input("End time", datetime.date(df['DateTime'][len(df)-1].year, df['DateTime'][len(df)-1].month, df['DateTime'][len(df)-1].day))
+d1 = st.date_input("Start time", datetime.date(df['time'][0].year, df['time'][0].month, df['time'][0].day))
+d2 = st.date_input("End time", datetime.date(df['time'][len(df)-1].year, df['time'][len(df)-1].month, df['time'][len(df)-1].day))
 st.write("Showing range:", d1,' - ',d2)
 
 #Convert time stamps d1 and d2 to datetime
