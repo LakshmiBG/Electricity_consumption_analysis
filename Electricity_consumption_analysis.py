@@ -96,10 +96,10 @@ st.bar_chart(monthly_cost)
 total_consumption = df_filtered['energy_kwh'].sum().round(2)
 total_bill = df_filtered['bill_euro'].sum().round(2)
 average_price = df_filtered['price_kwh_cent'].mean().round(2)
-average_paid_price = (total_bill / total_consumption)*100 if total_consumption else 0
+average_paid_price = ((total_bill / total_consumption)*100).round(2) if total_consumption else 0
 
 
 st.write(f'Total consumption over the period', total_consumption, 'kWh')
 st.write(f'Total bill over the period:', total_bill, '€')
 st.write(f'Average price:', average_price, 'cents/kWh')
-st.write(f'Average paid price:', average_paid_price:.2f, 'Euros/kWh')
+st.write(f'Average paid price:', average_paid_price, 'Euros/kWh')
