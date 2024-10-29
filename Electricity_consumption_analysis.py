@@ -94,7 +94,7 @@ total_consumption = df_filtered['energy_kwh'].sum()
 total_bill = df_filtered['bill_euro'].sum()
 average_price = df_filtered['price_kwh_cent'].mean()
 
-st.write(f'Showing range:', start_date, end_date)
+
 st.write(f'Total consumption over the period', total_consumption, 'kWh')
 st.write(f'Total bill over the period:', total_bill, '€')
 st.write(f'Average price:', average_price, 'cents/kWh')
