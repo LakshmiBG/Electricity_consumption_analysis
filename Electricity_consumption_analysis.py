@@ -79,10 +79,10 @@ else:
 
 
 # Display line charts for each parameter
-st.line_chart(data=df_filtered, x='time', y='energy_kwh', title="Electricity Consumption (kWh)")
-st.line_chart(data=df_filtered, x='time', y='bill_euro', title="Electricity Bill (€)")
-st.line_chart(data=df_filtered, x='time', y='price_kwh_cent', title="Electricity Price (cents/kWh)")
-st.line_chart(data=df_filtered, x='time', y='Temperature', title="Temperature (°C)")
+st.line_chart(data=df_filtered, x='time', y='energy_kwh')
+st.line_chart(data=df_filtered, x='time', y='bill_euro')
+st.line_chart(data=df_filtered, x='time', y='price_kwh_cent')
+st.line_chart(data=df_filtered, x='time', y='Temperature')
 
 
 # Show statistics for the selected period
