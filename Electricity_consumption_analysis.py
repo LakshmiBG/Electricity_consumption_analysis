@@ -76,3 +76,16 @@ else:
     df_monthly_avg.set_index('datetime')
     df_filtered = df_monthly_avg[(df_monthly_avg['datetime']> start_date) & (df_monthly_avg['datetime']<end_date)]
     st.line_chart(data=df_monthly_avg, x='time', y='energy_kwh')
+
+
+# Show statistics for the selected period
+total_consumption = filtered_df['energy_kwh'].sum()
+total_bill = filtered_df['bill_euro'].sum()
+average_price = filtered_df['price_kwh_cent'].mean()
+average_paid_price = total_bill / total_consumption if total_consumption else 0
+
+st.write(f'Showing range:', start_date, end_date)
+st.write(f'Total consumption over the period', total_consumption, 'kWh')
+st.write(f'Total bill over the period:', total_bill, '€')
+st.write(f'Average price:', average_price, 'cents/kWh')
+st.write(f'Average paid price:', average_paid_price, 'cents/kWh')
