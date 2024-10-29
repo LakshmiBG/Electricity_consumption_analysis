@@ -90,10 +90,10 @@ else:
 
 
 # Display summary statistics for the selected period
-total_consumption = df_filtered['energy_kwh'].sum().round(2)
-total_bill = df_filtered['bill_euro'].sum().round(2)
-average_price = df_filtered['price_kwh_cent'].mean().round(2)
-average_paid_price = ((total_bill / total_consumption)*100).round(2) if total_consumption else 0
+total_consumption = round(df_filtered['energy_kwh'].sum(), 2)
+total_bill = round(df_filtered['bill_euro'].sum(), 2)
+average_price = round(df_filtered['price_kwh_cent'].mean(), 2)
+average_paid_price = round(((total_bill / total_consumption)*100), 2) if total_consumption else 0
 highest_price_date = df_filtered.loc[df_filtered['price_kwh_cent'].idxmax()]['datetime']
 lowest_price_date = df_filtered.loc[df_filtered['price_kwh_cent'].idxmin()]['datetime']
 
