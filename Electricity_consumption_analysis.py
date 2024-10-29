@@ -89,6 +89,9 @@ else:
     st.line_chart(data=df_filtered, x='time', y='Temperature', y_label = 'Temperature', x_label = 'Time')
 
 
+monthly_cost = df_filtered.groupby(df_filtered['time'].dt.month)['bill_euro'].sum().round(2)
+st.bar_chart(monthly_cost)
+
 # Display summary statistics for the selected period
 total_consumption = df_filtered['energy_kwh'].sum().round(2)
 total_bill = df_filtered['bill_euro'].sum().round(2)
