@@ -89,23 +89,21 @@ else:
     st.line_chart(data=df_filtered, x='time', y='Temperature', y_label = 'Temperature', x_label = 'Time')
 
 
-monthly_cost = df_filtered.groupby(df_filtered['time'].dt.month)['bill_euro'].sum().round(2)
-st.bar_chart(monthly_cost)
-
 # Display summary statistics for the selected period
 total_consumption = rounddf_filtered['energy_kwh'].sum().round(2)
 total_bill = df_filtered['bill_euro'].sum().round(2)
 average_price = df_filtered['price_kwh_cent'].mean().round(2)
 average_paid_price = ((total_bill / total_consumption)*100).round(2) if total_consumption else 0
-
+highest_price_date = df_filtered.loc[df_filtered['price_kwh_cent'].idxmax()]['datetime']
+lowest_price_date = df_filtered.loc[df_filtered['price_kwh_cent'].idxmin()]['datetime']
 
 st.write(f'Total consumption over the period', total_consumption, 'kWh')
 st.write(f'Total bill over the period:', total_bill, '€')
 st.write(f'Average price:', average_price, 'cents/kWh')
 st.write(f'Average paid price:', average_paid_price, 'cents/kWh')
+st.write(f'Date with highest price:', highest_price_date)
+st.write(f'Date with lowest price:', lowest_price_date)
 
 
-df_filtered['season'] = df_filtered['time'].dt.month % 12 // 3 + 1
-seasonal_summary = df_filtered.groupby('season')[['energy_kwh', 'bill_euro']].agg(['sum', 'mean']).round(2)
-seasonal_summary.columns = ['Total Consumption (kWh)', 'Average Consumption (kWh)', 'Total Bill (€)', 'Average Bill (€)']
-st.write("Seasonal Summary:", seasonal_summary)
+monthly_cost = df_filtered.groupby(df_filtered['time'].dt.month)['bill_euro'].sum().round(2)
+st.bar_chart(monthly_cost)
