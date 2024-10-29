@@ -87,3 +87,6 @@ else:
     st.line_chart(data=df_filtered, x='time', y='Temperature', y_label = 'Temperature', x_label = 'Time')
 
 
+# Display summary statistics for the selected period
+total_consumption = df_filtered['energy_kwh'].sum()
+st.write(f'Total consumption over the period', total_consumption, 'kWh')
