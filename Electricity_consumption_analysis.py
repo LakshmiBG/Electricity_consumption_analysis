@@ -3,8 +3,10 @@ import streamlit as st
 
 
 #Reading csv files
-dfEl = pd.read_csv('Electricity_20-09-2024.csv',delimiter=';', decimal=',')
-dfSh = pd.read_csv('sahkon-hinta-010121-240924.csv')
+url1 = "https://raw.githubusercontent.com/LakshmiBG/Electricity_consumption_analysis/refs/heads/main/Electricity_20-09-2024.csv"
+url2 = "https://raw.githubusercontent.com/LakshmiBG/Electricity_consumption_analysis/refs/heads/main/sahkon-hinta-010121-240924.csv"
+dfEl = pd.read_csv(url1,delimiter=';', decimal=',')
+dfSh = pd.read_csv(url2)
 
 #Change time format of both files to Pandas datetime
 
