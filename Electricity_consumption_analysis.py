@@ -90,7 +90,7 @@ else:
 
 
 # Display summary statistics for the selected period
-total_consumption = rounddf_filtered['energy_kwh'].sum().round(2)
+total_consumption = df_filtered['energy_kwh'].sum().round(2)
 total_bill = df_filtered['bill_euro'].sum().round(2)
 average_price = df_filtered['price_kwh_cent'].mean().round(2)
 average_paid_price = ((total_bill / total_consumption)*100).round(2) if total_consumption else 0
