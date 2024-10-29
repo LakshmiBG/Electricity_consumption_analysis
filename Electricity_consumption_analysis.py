@@ -63,6 +63,8 @@ end_date = st.date_input(label='End Date',format="YYYY/MM/DD", value=max_date)
 #Grouping interval
 option = st.selectbox("Select an option:", ["Daily", "Weekly", "Monthly"])
 
+st.write(f'Showing range:', start_date, end_date)
+
 if option == 'Daily':
     # filter dates
     df_daily_avg.set_index('datetime')
@@ -89,4 +91,7 @@ else:
 
 # Display summary statistics for the selected period
 total_consumption = df_filtered['energy_kwh'].sum()
+total_bill = df_filtered['bill_euro'].sum()
+average_price = df_filtered['price_kwh_cent'].mean()
+
 st.write(f'Total consumption over the period', total_consumption, 'kWh')
