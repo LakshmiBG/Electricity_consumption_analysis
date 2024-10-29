@@ -92,6 +92,9 @@ else:
     else:
         lowest_price_date = None
 
+    peak_consumption_day = df_filtered.loc[df_filtered['energy_kwh'].idxmax()]['datetime']
+    low_consumption_day = df_filtered.loc[df_filtered['energy_kwh'].idxmin()]['datetime']
+
 
     st.write(f'Total consumption over the period', total_consumption, 'kWh')
     st.write(f'Total bill over the period:', total_bill, '€')
@@ -99,6 +102,8 @@ else:
     st.write(f'Average paid price:', average_paid_price, 'cents/kWh')
     st.write(f'Date with highest price:', highest_price_date)
     st.write(f'Date with lowest price:', lowest_price_date)
+    st.write(f'Peak consumption day:', peak_consumption_day)
+    st.write(f'Lowest consumption day:', low_consumption_day)
     st.write(f'')
 
     
