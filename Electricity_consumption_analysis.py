@@ -1,5 +1,6 @@
 import pandas as pd
 import streamlit as st
+import datetime
 
 
 #Reading csv files
@@ -54,11 +55,23 @@ df_monthly_avg['datetime'] = df['time'].dt.date
 min_date = df_daily_avg['datetime'].min()
 max_date = df_daily_avg['datetime'].max()
 
+d1 = st.date_input("Start time", datetime.date(df['DateTime'][0].year, df['DateTime'][0].month, df['DateTime'][0].day))
+d2 = st.date_input("End time", datetime.date(df['DateTime'][len(df)-1].year, df['DateTime'][len(df)-1].month, df['DateTime'][len(df)-1].day))
+st.write("Showing range:", d1,' - ',d2)
+
+#Convert time stamps d1 and d2 to datetime
+d1 = pd.to_datetime(d1)
+d2 = pd.to_datetime(d2)
+
+#And then selecting the period from data:
+df = df[df['DateTime']>d1]
+df = df[df['DateTime']<d2]
+
 print(min_date, max_date)
 
 #Start and end date input
-start_date = st.date_input(label='Start Date',format="YYYY/MM/DD", value=min_date)
-end_date = st.date_input(label='End Date',format="YYYY/MM/DD", value=max_date)
+start_date = st.date_input(label='Start Date',format="YYYY/MM/DD", value=d1)
+end_date = st.date_input(label='End Date',format="YYYY/MM/DD", value=d2)
 
 # Check if the start date is later than the end date
 if start_date > end_date:
