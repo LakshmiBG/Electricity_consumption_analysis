@@ -71,6 +71,7 @@ else:
         df_filtered = df_monthly_avg
 
     # Display summary statistics for the selected period
+    st.write("Showing range:", d1, " - ", d2)
     total_consumption = round(df_filtered['energy_kwh'].sum(), 2)
     total_bill = round(df_filtered['bill_euro'].sum(), 2)
     average_price = round(df_filtered['price_kwh_cent'].mean(), 2)
