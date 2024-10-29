@@ -94,32 +94,32 @@ else:
         st.line_chart(data=df_filtered, x='time', y='Temperature', y_label = 'Temperature', x_label = 'Time')
 
 
-# Display summary statistics for the selected period
-total_consumption = round(df_filtered['energy_kwh'].sum(), 2)
-total_bill = round(df_filtered['bill_euro'].sum(), 2)
-average_price = round(df_filtered['price_kwh_cent'].mean(), 2)
-average_paid_price = round((total_bill / total_consumption)*100, 2) if total_consumption else 0
+    # Display summary statistics for the selected period
+    total_consumption = round(df_filtered['energy_kwh'].sum(), 2)
+    total_bill = round(df_filtered['bill_euro'].sum(), 2)
+    average_price = round(df_filtered['price_kwh_cent'].mean(), 2)
+    average_paid_price = round((total_bill / total_consumption)*100, 2) if total_consumption else 0
 
-if not df_filtered['price_kwh_cent'].empty:
-    highest_price_date = df_filtered.loc[df_filtered['price_kwh_cent'].idxmax()]['datetime']
-else:
-    highest_price_date = None
+    if not df_filtered['price_kwh_cent'].empty:
+        highest_price_date = df_filtered.loc[df_filtered['price_kwh_cent'].idxmax()]['datetime']
+    else:
+        highest_price_date = None
 
-if not df_filtered['price_kwh_cent'].empty:
-    lowest_price_date = df_filtered.loc[df_filtered['price_kwh_cent'].idxmin()]['datetime']
-else:
-    lowest_price_date = None
-
-
-st.write(f'Total consumption over the period', total_consumption, 'kWh')
-st.write(f'Total bill over the period:', total_bill, '€')
-st.write(f'Average price:', average_price, 'cents/kWh')
-st.write(f'Average paid price:', average_paid_price, 'cents/kWh')
-st.write(f'Date with highest price:', highest_price_date)
-st.write(f'Date with lowest price:', lowest_price_date)
+    if not df_filtered['price_kwh_cent'].empty:
+        lowest_price_date = df_filtered.loc[df_filtered['price_kwh_cent'].idxmin()]['datetime']
+    else:
+        lowest_price_date = None
 
 
-monthly_cost = df_filtered.groupby(df_filtered['time'].dt.month)['bill_euro'].sum().round(2)
-st.bar_chart(monthly_cost)
+    st.write(f'Total consumption over the period', total_consumption, 'kWh')
+    st.write(f'Total bill over the period:', total_bill, '€')
+    st.write(f'Average price:', average_price, 'cents/kWh')
+    st.write(f'Average paid price:', average_paid_price, 'cents/kWh')
+    st.write(f'Date with highest price:', highest_price_date)
+    st.write(f'Date with lowest price:', lowest_price_date)
+
+
+    monthly_cost = df_filtered.groupby(df_filtered['time'].dt.month)['bill_euro'].sum().round(2)
+    st.bar_chart(monthly_cost)
 
 
