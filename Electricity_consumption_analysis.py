@@ -60,33 +60,38 @@ print(min_date, max_date)
 start_date = st.date_input(label='Start Date',format="YYYY/MM/DD", value=min_date)
 end_date = st.date_input(label='End Date',format="YYYY/MM/DD", value=max_date)
 
-#Grouping interval
-option = st.selectbox("Select an option:", ["Daily", "Weekly", "Monthly"])
-
-st.write(f'Showing range:', start_date, end_date)
-
-if option == 'Daily':
-    # filter dates
-    df_daily_avg.set_index('datetime')
-    df_filtered = df_daily_avg[(df_daily_avg['datetime']> start_date) & (df_daily_avg['datetime']<end_date)]
-    st.line_chart(data=df_filtered, x='time', y='energy_kwh', y_label = 'Energy consumption kWh', x_label = 'Time')
-    st.line_chart(data=df_filtered, x='time', y='price_kwh_cent', y_label = 'Electricity price [cents]', x_label = 'Time')
-    st.line_chart(data=df_filtered, x='time', y='bill_euro', y_label = 'Electricity bill [Euros]', x_label = 'Time')
-    st.line_chart(data=df_filtered, x='time', y='Temperature', y_label = 'Temperature', x_label = 'Time')
-elif option == 'Weekly':
-    df_weekly_avg.set_index('datetime')
-    df_filtered = df_weekly_avg[(df_weekly_avg['datetime']> start_date) & (df_weekly_avg['datetime']<end_date)]
-    st.line_chart(data=df_filtered, x='time', y='energy_kwh', y_label = 'Energy consumption kWh', x_label = 'Time')
-    st.line_chart(data=df_filtered, x='time', y='price_kwh_cent', y_label = 'Electricity price [cents]', x_label = 'Time')
-    st.line_chart(data=df_filtered, x='time', y='bill_euro', y_label = 'Electricity bill [Euros]', x_label = 'Time')
-    st.line_chart(data=df_filtered, x='time', y='Temperature', y_label = 'Temperature', x_label = 'Time')
+# Check if the start date is later than the end date
+if start_date > end_date:
+    st.error("Error: Start date must not be later than end date. Please select again.")
 else:
-    df_monthly_avg.set_index('datetime')
-    df_filtered = df_monthly_avg[(df_monthly_avg['datetime']> start_date) & (df_monthly_avg['datetime']<end_date)]
-    st.line_chart(data=df_filtered, x='time', y='energy_kwh', y_label = 'Energy consumption kWh', x_label = 'Time')
-    st.line_chart(data=df_filtered, x='time', y='price_kwh_cent', y_label = 'Electricity price [cents]', x_label = 'Time')
-    st.line_chart(data=df_filtered, x='time', y='bill_euro', y_label = 'Electricity bill [Euros]', x_label = 'Time')
-    st.line_chart(data=df_filtered, x='time', y='Temperature', y_label = 'Temperature', x_label = 'Time')
+    # Proceed with the rest of your logic only if the dates are valid
+    st.write(f'Showing range:', start_date, end_date)
+
+    #Grouping interval
+    option = st.selectbox("Select an option:", ["Daily", "Weekly", "Monthly"])
+
+    if option == 'Daily':
+        # filter dates
+        df_daily_avg.set_index('datetime')
+        df_filtered = df_daily_avg[(df_daily_avg['datetime']> start_date) & (df_daily_avg['datetime']<end_date)]
+        st.line_chart(data=df_filtered, x='time', y='energy_kwh', y_label = 'Energy consumption kWh', x_label = 'Time')
+        st.line_chart(data=df_filtered, x='time', y='price_kwh_cent', y_label = 'Electricity price [cents]', x_label = 'Time')
+        st.line_chart(data=df_filtered, x='time', y='bill_euro', y_label = 'Electricity bill [Euros]', x_label = 'Time')
+        st.line_chart(data=df_filtered, x='time', y='Temperature', y_label = 'Temperature', x_label = 'Time')
+    elif option == 'Weekly':
+        df_weekly_avg.set_index('datetime')
+        df_filtered = df_weekly_avg[(df_weekly_avg['datetime']> start_date) & (df_weekly_avg['datetime']<end_date)]
+        st.line_chart(data=df_filtered, x='time', y='energy_kwh', y_label = 'Energy consumption kWh', x_label = 'Time')
+        st.line_chart(data=df_filtered, x='time', y='price_kwh_cent', y_label = 'Electricity price [cents]', x_label = 'Time')
+        st.line_chart(data=df_filtered, x='time', y='bill_euro', y_label = 'Electricity bill [Euros]', x_label = 'Time')
+        st.line_chart(data=df_filtered, x='time', y='Temperature', y_label = 'Temperature', x_label = 'Time')
+    else:
+        df_monthly_avg.set_index('datetime')
+        df_filtered = df_monthly_avg[(df_monthly_avg['datetime']> start_date) & (df_monthly_avg['datetime']<end_date)]
+        st.line_chart(data=df_filtered, x='time', y='energy_kwh', y_label = 'Energy consumption kWh', x_label = 'Time')
+        st.line_chart(data=df_filtered, x='time', y='price_kwh_cent', y_label = 'Electricity price [cents]', x_label = 'Time')
+        st.line_chart(data=df_filtered, x='time', y='bill_euro', y_label = 'Electricity bill [Euros]', x_label = 'Time')
+        st.line_chart(data=df_filtered, x='time', y='Temperature', y_label = 'Temperature', x_label = 'Time')
 
 
 # Display summary statistics for the selected period
