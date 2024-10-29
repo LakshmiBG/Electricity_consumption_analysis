@@ -42,8 +42,8 @@ d2 = pd.to_datetime(d2)
 
 
 # Filter the data based on the selected period
-df = df[df['DateTime']>d1]
-df = df[df['DateTime']<d2]
+df = df[df['time']>d1]
+df = df[df['time']<d2]
 
 # Calculated grouped values of daily, weekly or monthly consumption, bill, average price and average temperature
 #freq = 'd', grouping over one day
