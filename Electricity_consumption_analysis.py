@@ -71,6 +71,7 @@ else:
         df_filtered = df_monthly_avg
 
     # Plot charts
+    st.title('Energy consumption')
     st.line_chart(data=df_filtered, x='time', y='energy_kwh', y_label='Energy consumption (kWh)', x_label='Time')
     st.line_chart(data=df_filtered, x='time', y='price_kwh_cent', y_label='Electricity price (cents)', x_label='Time')
     st.line_chart(data=df_filtered, x='time', y='bill_euro', y_label='Electricity bill (Euros)', x_label='Time')
