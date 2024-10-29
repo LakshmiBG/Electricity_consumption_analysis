@@ -22,8 +22,8 @@ df = df.rename(columns={"Energy (kWh)": "energy_kwh", "Price (cent/kWh)": "price
 df['bill_euro'] = df['energy_kwh'] * df['price_kwh_cent'] / 100
 
 # Get minimum and maximum dates for setting date range in Streamlit
-min_date = df['time'].min().date()
-max_date = df['time'].max().date()
+min_date = pd.Timestamp(df['time'].min().date())
+max_date = pd.Timestamp(df['time'].max().date())
 
 # Start and end date input
 d1 = st.date_input("Start time", datetime.date(df['time'][0].year, df['time'][0].month, df['time'][0].day))
